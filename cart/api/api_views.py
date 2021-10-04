@@ -15,8 +15,8 @@ class CartDetailView(APIView):
     def get(self, request):
         cart = Cart(request)
         for item in cart:
-            ser = json.dumps(item)
-            return Response(ser, status=status.HTTP_200_OK)
+            serialize = json.dumps(item)
+            return Response(serialize, status=status.HTTP_200_OK)
 
 
 class CartAdd(APIView):
@@ -40,7 +40,7 @@ class CartRemoveView(APIView):
         cart = Cart(request)
         product = get_object_or_404(Product, code=code)
         cart.remove(product)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data='remove', status=status.HTTP_204_NO_CONTENT)
 
 
 
