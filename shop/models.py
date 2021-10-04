@@ -44,7 +44,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=500,unique=True)
     code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to='products/%Y/%m/%d', null=True, blank=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)

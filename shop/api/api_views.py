@@ -5,6 +5,7 @@ from ..models import Product
 from .serializers import ProductSerializer, ProductSearchSerializer
 from rest_framework.exceptions import ValidationError
 from .exception import ProductDoesNotExist
+from rest_framework.permissions import IsAuthenticated
 
 
 class ListProductView(generics.ListAPIView):
@@ -13,6 +14,7 @@ class ListProductView(generics.ListAPIView):
 
 
 class SearchProductView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = ProductSearchSerializer(data=request.data)
         try:
