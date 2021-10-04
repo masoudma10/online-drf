@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # second apps
     'users',
     'shop',
+    'cart',
 
     # third party apps
     'rest_framework',

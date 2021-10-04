@@ -42,7 +42,7 @@ class Product(models.Model):
     sub_category = models.ForeignKey(SubCategory,on_delete=models.CASCADE,related_name='products')
     name = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500,unique=True)
-    code = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
+    code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to='products/%Y/%m/%d', null=True, blank=True)
     description = models.TextField()
     price = models.IntegerField()
