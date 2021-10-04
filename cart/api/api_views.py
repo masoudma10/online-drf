@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from ..cart import Cart
 from rest_framework import generics, status, serializers
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from shop.models import Product
 from django.core.exceptions import EmptyResultSet
 from .serializers import CartAddSerializer
@@ -12,6 +13,7 @@ from .exception import ProductDoesNotExist
 
 
 class CartDetailView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         cart = Cart(request)
         for item in cart:
@@ -20,6 +22,7 @@ class CartDetailView(APIView):
 
 
 class CartAdd(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, code):
         cart = Cart(request)
         try:
@@ -36,6 +39,7 @@ class CartAdd(APIView):
 
 
 class CartRemoveView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, code):
         cart = Cart(request)
         product = get_object_or_404(Product, code=code)

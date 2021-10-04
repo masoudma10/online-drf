@@ -6,12 +6,13 @@ from django.utils import timezone
 from rest_framework.generics import get_object_or_404
 from .serializers import CouponSerializer
 from rest_framework import status
-from django.core import serializers
+from rest_framework.permissions import IsAuthenticated
 
 
 
 
 class OrderCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         cart = Cart(request)
         order = Order.objects.create(user=self.request.user)
@@ -27,6 +28,7 @@ class OrderCreateView(APIView):
 
 
 class CouponApplyView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, order_id):
         now = timezone.now()
         serializer = CouponSerializer(data=request.data)
