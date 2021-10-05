@@ -4,7 +4,6 @@ from .models import Product,Category, SubCategory
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from unittest.mock import patch, Mock, MagicMock
-from rest_framework.permissions import AllowAny
 from .api.api_views import SearchProductView
 
 
